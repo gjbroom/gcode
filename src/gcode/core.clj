@@ -28,7 +28,6 @@
 
 (defn motion-seek [state-vec & {:keys [x y z a b c u v w]}]
   (let [curr (last state-vec)
-        abs? (= (curr :distance) :absolute)
         repr (str "G0"
                   (if x (str "X" x) "")
                   (if y (str "Y" y) "")
@@ -38,8 +37,7 @@
                   (if c (str "C" c) "")
                   (if u (str "U" u) "")
                   (if v (str "V" v) "")
-                  (if w (str "W" w) ""))
-        ]
+                  (if w (str "W" w) ""))]
     (conj state-vec (assoc curr
                            :x (maybe-param curr :x x)
                            :y (maybe-param curr :y y)
